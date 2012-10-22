@@ -1,7 +1,19 @@
 
 # component-mirror
 
-  Fetch all remote components to create a local mirror for offline dev
+  Fetch all remote components to create a local mirror for offline dev.
+
+## Installation
+
+```
+$ npm install -g component-mirror
+```
+
+## Usage
+
+```
+$ component mirror /tmp/components
+```
 
 ## License 
 
