@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var request = require('superagent')
+  , program = require('commander')
+  , spawn = require('child_process').spawn
+  , remote = 'http://component.io/components/all'
+  , pkg = require('../package.json');
+
+// usage
+
+program
+  .version(pkg.version)
+  .usage('<dir>')
+  .parse(process.argv);
+
+// <dir>
+
+var dir = program.args.shift();
+
+if (!dir) {
+  console.error('\n  mirror <dir> required\n');
+  process.exit(1);
+}
+
+// fetch
+
+request.get(remote, function(res){
+  if (!res.ok) throw new Error(res.status + ' response');
+  var args = res.body.map(repos).filter(blanks);
+  args.push('-o');
+  args.push(dir);
+  spawn('component-install', args, { stdio: 'inherit' });
+});
+
+function repos(pkg) {
+  return pkg && pkg.repo;
+}
+
+function blanks(val) {
+  return 'string' == typeof val;
+}
