@@ -2,7 +2,10 @@
   "name": "component-mirror",
   "version": "0.0.1",
   "description": "Fetch all remote components to create a local mirror for offline dev",
-  "keywords": ["component", "mirror"],
+  "keywords": [
+    "component",
+    "mirror"
+  ],
   "author": "TJ Holowaychuk <tj@vision-media.ca>",
   "dependencies": {
     "superagent": "0.9.7",
@@ -12,6 +15,12 @@
     "mocha": "*",
     "should": "*"
   },
-  "bin": { "component-mirror": "./bin/component-mirror" },
-  "main": "index"
+  "bin": {
+    "component-mirror": "./bin/component-mirror"
+  },
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/component/component-mirror.git"
+  }
 }
